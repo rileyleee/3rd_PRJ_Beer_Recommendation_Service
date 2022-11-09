@@ -1,4 +1,4 @@
-"""beer_recommend_prj URL Configuration
+"""do_it_django_prj URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -14,8 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.http import HttpResponse
+from django.urls import path, include
+
+
+def root(request):
+    return HttpResponse("오늘 시간 비어: 맥주 추천 페이지")
+
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path('', root),
+    path('account/', include('account.urls')),  # blog.urls에 있는 주소 앞에 blog/를 한 번에 붙이자.
+    path('search/', include('search.urls')),
+    path('community/', include('community.urls')),
+    path('admin/', admin.site.urls),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
