@@ -16,9 +16,11 @@ logout = LogoutView.as_view(
 
 
 @login_required
-def profile(request):
+def mypage(request):
     return render(request, "account/mypage.html")
 
+def mybeer(request):
+    return render(request, "account/mybeer.html")
 
 signup = CreateView.as_view(
     form_class=UserCreationForm,
