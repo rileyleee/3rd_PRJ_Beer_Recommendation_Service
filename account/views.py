@@ -1,26 +1,27 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.views import LogoutView, LoginView
 from django.shortcuts import render
 from django.views.generic import CreateView
 
+
 login = LoginView.as_view(
-    template_name="accounts/login_form.html",
+    template_name="account/login.html",
 )
+
 
 logout = LogoutView.as_view(
-    next_page="/accounts/login/",
+    next_page="/account/login/",
 )
 
 
-@login_required  # 해당 함수를 감싸는 것
-# @goldmembership_required
+@login_required
 def profile(request):
-    return render(request, "accounts/profile.html")
+    return render(request, "account/mypage.html")
 
 
 signup = CreateView.as_view(
     form_class=UserCreationForm,
-    success_url="/accounts/login/",
-    template_name="accounts/signup_form.html",
+    success_url="/account/login/",
+    template_name="account/signup.html"
 )
