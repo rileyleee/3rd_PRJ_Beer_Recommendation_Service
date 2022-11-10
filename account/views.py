@@ -22,6 +22,7 @@ def mypage(request):
 def mybeer(request):
     return render(request, "account/mybeer.html")
 
+
 signup = CreateView.as_view(
     form_class=UserCreationForm,
     success_url="/account/login/",
