@@ -13,13 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
+
+# from django.contrib import admin
+
 from django.http import HttpResponse
 from django.urls import path, include
 
 
 def root(request):
-    return HttpResponse("오늘 시간 비어: 맥주 추천 페이지")
+    return HttpResponse("home/을 추가해 오늘 시간 비어: 맥주 추천 페이지로 이동해주세요")
 
 
 urlpatterns = [
@@ -27,6 +29,5 @@ urlpatterns = [
     path('account/', include('account.urls')),  # blog.urls에 있는 주소 앞에 blog/를 한 번에 붙이자.
     path('search/', include('search.urls')),
     path('community/', include('community.urls')),
-    path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
 ]

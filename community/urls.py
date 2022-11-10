@@ -1,13 +1,12 @@
 from django.urls import path
-from  import views
+from community import views
 
-urlpatterns = [    
-    path('', views.index),
-    path('<int:pk>/', views.single_post_page), # 몇번째 글이든 불러올 수 있도록 모든 숫자를 가져올 수 있도록 <int>로 입력
-    path('new/', views.post_new),
-    path('restaurant/', views.restaurant),
-    path('restaurant/<int:pk>/', views.single_restaurant_page),
-    path('restaurant/new/', views.restaurant_new),
-    ]
+urlpatterns = [
+    path('column/', views.column),
+    path('column/new/', views.column_new),
+    path('column/<int:pk>/', views.column_detail),
+    path('event/', views.event),
+    path('event/new/', views.event_new),
+    path('event/<int:pk>/', views.event_detail),
+]
 
-    
