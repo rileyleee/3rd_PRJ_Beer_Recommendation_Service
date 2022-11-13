@@ -1,6 +1,7 @@
 from django import forms
 from community.models import Column, Event
 
+
 class ColumnForm(forms.ModelForm):
     class Meta:
         model = Column

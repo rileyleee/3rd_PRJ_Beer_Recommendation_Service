@@ -1,30 +1,77 @@
 {% extends "community/base.html" %}
 {% load django_bootstrap5 %}
 {% block content %}
-    {% block title %}Column{% endblock %}
+{% block title %}Column{% endblock %}
+    <div class="container">
+        <div class="row g-5">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">캠핑과 가장 잘 어울리는 맥주</h3>
+                        <p class="card-text">비밀</p>
+                    </div>
+                    <img src="/" class="card-img-top" alt="photo">
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Column</title>
-    </head>
-    <body>
-    <h1>Column List</h1>
+    <div class="container">
+        <div class="row g-5">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">주관적인 맥주 top10</h5>
+                        <p class="card-text">비밀</p>
+                    </div>
+                    <img src="/" class="card-img-top" alt="photo">
+                </div>
+            </div>
+        </div>
+    </div>
 
-    {% for post in post_list %}
-        <h2>
-            <a href="{{ post.get_absolute_url }}">
-            </a>
-            <a href="/column/{{ post.pk }}/">
-                {{ post.title }}
-            </a>
-        </h2>
-        <h4>{{ post.created_at }}</h4>
-        <p>{{ post.content }}</p>
-    {% endfor %}
-    <a href="/column/new/">새 포스팅 쓰기</a>
-    </body>
+    <div class="container">
+        <div class="row g-5">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">궁합이 잘 맞는 맥주와 음식</h5>
+                        <p class="card-text">비밀</p>
+                    </div>
+                    <img src="/" class="card-img-top" alt="...">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-4">
+        <h4> 지금 뜨는 맥주 </h4>
+        <div class="position-sticky" style="top: 2rem;">
+            <div class="p-4 mb-3 bg-light rounded">
+                <ul class="list-group">
+                    <li class="list-group-item">1. A맥주</li>
+                    <li class="list-group-item">2. B맥주</li>
+                    <li class="list-group-item">3. C맥주</li>
+                    <li class="list-group-item">4. ....</li>
+                    <li class="list-group-item">5. ...</li>
+                </ul>
+            </div>
+
+            <div class="p-4">
+                <h4 class="fst-italic">추천할만한 컬럼</h4>
+                <!--<ol class="list-unstyled mb-0">-->
+                    <ul class="list-group">
+                        <li class="list-group-item">A컬럼</li>
+                        <li class="list-group-item">B컬럼</li>
+                        <li class="list-group-item">C컬럼</li>
+                    </ul>
+                <!--</ol>-->
+            </div>
+        </div>
+    </div>
+
 
     <footer class="blog-footer">
         <a href="#">Back to top</a>

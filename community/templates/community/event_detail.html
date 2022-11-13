@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "community/base.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+
+<!--
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ events.title }} - event</title>
 
-</body>
-</html>
+</head>
+<body> -->
+
+<h1>{{ events.title }}</h1>
+<h4>{{ events.created_at }}</h4>
+<p>{{ events.content }}</p>
+
+</hr>
+
+<a href="/community/event/">Event 목록</a>
+{% endblock %}

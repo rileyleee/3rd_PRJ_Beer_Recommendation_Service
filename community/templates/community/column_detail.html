@@ -1,10 +1,24 @@
+{% extends "community/base.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+
+<!--
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ columns.title }} - column</title>
 
-</body>
-</html>
+</head>
+<body> -->
+
+<h1>{{ columns.title }}</h1>
+<h4>{{ columns.created_at }}</h4>
+<p>{{ columns.content }}</p>
+
+</hr>
+
+<a href="/community/column/">Column 목록</a>
+{% endblock %}

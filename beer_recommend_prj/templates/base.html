@@ -4,21 +4,21 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Beer</title>
+    <title>Two_trillionaires' Beer</title>
     {% bootstrap_css %}
 
 </head>
 <body>
 <div class="container">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <a href="/search" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
             <span class="fs-4">오늘 시간 beer</span>
         </a>
 
         <ul class="nav nav-pills">
-            <li class="nav-item"><a href="/recommend/" class="nav-link">Recommend</a></li>
-            <li class="nav-item"><a href="/column/" class="nav-link">Column</a></li>
-            <li class="nav-item"><a href="/event/" class="nav-link">Event</a></li>
+            <li class="nav-item"><a href="/search/recommend/" class="nav-link">Recommendation</a></li>
+            <li class="nav-item"><a href="/community/column/" class="nav-link">Column</a></li>
+            <li class="nav-item"><a href="/community/event/" class="nav-link">Event</a></li>
 
             {% if user.is_authenticated %}
                 <li class="nav-item"><a href="/account/signup/" class="nav-link">signup</a></li>

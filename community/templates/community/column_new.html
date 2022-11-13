@@ -1,20 +1,18 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ post.title }} - Column</title>
-    <!---blog는 문자임-->
-</head>
-<body>
-    <nav>
-        <a href="/column/">Column Home</a>
-    </nav>
-        <h1>{{ post.title }}</h1>
-        <h4>{{ post.created_at }}</h4>
-        <p>{{ post.content }}</p>
-        </hr>
-        <h3>=======댓글======</h3>
-</body>
-</html>
+{% extends "community/base.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+
+</hr>
+
+<h2>새 칼럼 작성</h2>
+
+<form action ="" method="post" novalidate>
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" />
+</form>
+
+
+{% endblock %}

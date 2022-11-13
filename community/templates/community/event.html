@@ -1,0 +1,23 @@
+{% extends "community/base.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+
+    <h1>Event</h1>
+
+    {% for events in event_list %}
+        <h2>
+            <a href="{{ events.pk }}/">
+                {{ events.title }}
+            </a>
+        </h2>
+        <h6>{{ events.created_at }}</h6>
+        <p>{{ events.content }}</p>
+    {% endfor %}
+
+    <a href="new/">관리자만 작성</a>
+
+    <footer class="blog-footer">
+        <a href="/community/event">Back to top</a>
+    </footer>
+
+{% endblock %}
