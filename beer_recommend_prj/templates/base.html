@@ -1,58 +1,48 @@
-<!-- 아래 네개 템플릿에서 중복되는 부분 일괄적용-->
 {% load django_bootstrap5 %}
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>오늘 시간 BEER</title>
+    <title>Beer</title>
     {% bootstrap_css %}
+
 </head>
 <body>
-
 <div class="container">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-            <span class="fs-4">Riley's diary</span>
+            <span class="fs-4">오늘 시간 beer</span>
         </a>
 
         <ul class="nav nav-pills">
-            <li class="nav-item"><a href="/blog/" class="nav-link">Blog</a></li>
-            <li class="nav-item"><a href="/diary/" class="nav-link">Diary</a></li>
+            <li class="nav-item"><a href="/recommend/" class="nav-link">Recommend</a></li>
+            <li class="nav-item"><a href="/column/" class="nav-link">Column</a></li>
+            <li class="nav-item"><a href="/event/" class="nav-link">Event</a></li>
 
-            {% if not user.is_authenticated %}
-                <li class="nav-item"><a href="/accounts/signup/" class="nav-link">Signup</a></li>
-                <li class="nav-item"><a href="/accounts/login/" class="nav-link">Login</a></li>
+            {% if user.is_authenticated %}
+                <li class="nav-item"><a href="/account/signup/" class="nav-link">signup</a></li>
+                <li class="nav-item"><a href="/account/login/" class="nav-link">login</a></li>
             {% else %}
-                <li class="nav-item"><a href="/accounts/profile/" class="nav-link">Profile</a></li>
-                <li class="nav-item"><a href="/accounts/logout/" class="nav-link">Logout</a></li>
+                <li class="nav-item"><a href="/account/logout/" class="nav-link">logout</a></li>
+                <li class="nav-item"><a href="/account/profile/" class="nav-link">My Page</a></li>
             {% endif %}
         </ul>
     </header>
 </div>
-<div class="container">
-    {% bootstrap_messages %}
 
-    <!--부트스트랩 적용 전 코드
-{% if messages %}
-    <ul>
-    {% for message in messages %}
-        <li>
-        {{ message.tags }}
-        {{ message }}
-        </li>
-    {% endfor %}
-    </ul>
-{% endif %}
-    <h1>Riley's Diary📄🖌</h1>-->
+<div class="container">
+
+    {% bootstrap_messages %}
 
     {% block content %}{% endblock %}
 
     <hr/>
-    &copy; 2022. Riley lee corporation.
+    &copy; 2022. two_trillionaires.
+
 </div>
-{% bootstrap_javascript %} <!--ui적인 요소들이 먼저 로드될 수 있도록 이건 아래로 빼줌-->
+
+{% bootstrap_javascript %}
+
 </body>
 </html>

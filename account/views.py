@@ -18,7 +18,6 @@ logout = LogoutView.as_view(
 @login_required
 def mypage(request):
     return render(request, "account/mypage.html")
-
 def mybeer(request):
     return render(request, "account/mybeer.html")
 

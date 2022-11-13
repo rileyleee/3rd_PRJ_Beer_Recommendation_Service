@@ -1,0 +1,9 @@
+<h2>이벤트 작성</h2>
+
+<form action ="" method="post" novalidate>
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" />
+</form>
