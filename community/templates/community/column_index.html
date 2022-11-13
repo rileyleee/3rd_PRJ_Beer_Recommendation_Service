@@ -1,23 +1,33 @@
-{%extends "base.html" %}
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Column</title>
-</head>
-<body>
+{% extends "community/base.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+    {% block title %}Column{% endblock %}
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Column</title>
+    </head>
+    <body>
     <h1>Column List</h1>
 
     {% for post in post_list %}
         <h2>
-             <a href="{{ post.get_absolute_url }}">
-             </a>
-             <a href="/column/{{ post.pk }}/">
+            <a href="{{ post.get_absolute_url }}">
+            </a>
+            <a href="/column/{{ post.pk }}/">
                 {{ post.title }}
-             </a>
+            </a>
         </h2>
-            <h4>{{ post.created_at }}</h4>
-            <p>{{ post.content }}</p>
+        <h4>{{ post.created_at }}</h4>
+        <p>{{ post.content }}</p>
     {% endfor %}
     <a href="/column/new/">새 포스팅 쓰기</a>
-</body>
+    </body>
+
+    <footer class="blog-footer">
+        <a href="#">Back to top</a>
+    </footer>
+
+{% endblock %}
