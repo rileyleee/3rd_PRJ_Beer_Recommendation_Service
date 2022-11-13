@@ -1,0 +1,157 @@
+{% extends "search/base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+        <!--<div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div> -->
+        <!--  <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="/static/img01.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="/static/img02.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="/static/img03.png" class="d-block w-100" alt="...">
+            </div>
+          </div> -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        <div class='container'>
+            <form action="#" class="form-search d-flex align-items-stretch mb-3 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                <input type="text" class="form-control" placeholder="Name, Style, Brewery">
+                <button type="submit" class="btn btn-primary">Search</button></form>
+        </div>
+    </div>
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      1 of 3
+        <div class='filter-item'>
+                        <p><span>종류</span></p>
+                        <ul class='box-view'>
+                            <li>
+                                <div class=''>
+                                    <input id='ch01-01' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_wineType', 'ch01-01', '레드', 'W01004');"><label for='ch01-01'>레드</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class=''>
+                                    <input id='ch01-02' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_wineType', 'ch01-02', '화이트', 'W01002');"><label for='ch01-02'>화이트</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class=''>
+                                    <input id='ch01-03' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_wineType', 'ch01-03', '스파클링', 'W01001');"><label for='ch01-03'>스파클링</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class=''>
+                                    <input id='ch01-04' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_wineType', 'ch01-04', '로제', 'W01003');"><label for='ch01-04'>로제</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class=''>
+                                    <input id='ch01-05' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_wineType', 'ch01-05', '주정강화', 'W01005');"><label for='ch01-05'>주정강화</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class=''>
+                                    <input id='ch01-06' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_wineType', 'ch01-06', '기타', 'W01999');"><label for='ch01-06'>기타</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+    </div>
+    <div class="col">
+      2 of 3
+      <div class='filter-item'>
+					<p><span>국가</span></p>
+					<ul class='box-view'>
+						<li><div class=''><input id='asd-ch02-01' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_nation', 'asd-ch02-01', '프랑스', 'P09000000');">
+                                <label for='asd-ch02-01'>프랑스</label></div></li>
+						<li><div class=''><input id='asd-ch02-02' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_nation', 'asd-ch02-02', '이탈리아', 'P15000000');">
+                                <label for='asd-ch02-02'>이탈리아</label></div></li>
+						<li><div class=''><input id='asd-ch02-04' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_nation', 'asd-ch02-04', '스페인', 'P24000000');">
+                                <label for='asd-ch02-04'>스페인</label></div></li>
+					    <li><div class=''><input id='asd-ch02-05' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_nation', 'asd-ch02-05', '포르투갈', 'P19000000');">
+                                <label for='asd-ch02-05'>포르투갈</label></div></li>
+                        <li><div class=''><input id='asd-ch02-03' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_nation', 'asd-ch02-03', '독일', 'P11000000');">
+                                <label for='asd-ch02-03'>독일</label></div></li>
+                        <li><div class=''><input id='asd-ch02-12' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_nation', 'asd-ch02-12', '오스트리아', 'P03000000');">
+                                <label for='asd-ch02-11'>오스트리아</label></div></li>
+                        <li><div class=''><input id='asd-ch02-06' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_nation', 'asd-ch02-06', '미국', 'P28000000');">
+                                <label for='asd-ch02-06'>미국</label></div></li>
+                        <li><div class=''><input id='asd-ch02-09' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_nation', 'asd-ch02-09', '호주', 'P02000000');">
+                                <label for='asd-ch02-09'>호주</label></div></li>
+                        <li><div class=''><input id='asd-ch02-10' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_nation', 'asd-ch02-10', '뉴질랜드', 'P18000000');">
+                                <label for='asd-ch02-10'>뉴질랜드</label></div></li>
+                        <li><div class=''><input id='asd-ch02-07' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_nation', 'asd-ch02-07', '칠레', 'P08000000');">
+                                <label for='asd-ch02-07'>칠레</label></div></li>
+                        <li><div class=''><input id='asd-ch02-08' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_nation', 'asd-ch02-08', '아르헨티나', 'P01000000');">
+                                <label for='asd-ch02-08'>아르헨티나</label></div></li>
+                        <li><div class=''><input id='asd-ch02-11' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_nation', 'asd-ch02-11', '남아프리카', 'P23000000');">
+                                <label for='asd-ch02-11'>남아프리카</label></div></li>
+                        <!-- <li><div class=''><input id='ch02-12' name='chCategory' type='checkbox' onclick="mainCategoryClick('type_nation', 'ch02-12', '기타', '');">
+                                    <label for='ch02-12'>기타</label></div></li> -->
+						</ul>
+				</div>
+    </div>
+    <div class="col">
+      3 of 3
+        <div class='filter-item'>
+                    <p><span>와인스타일</span></p>
+                    <ul class=''>
+                        <li><span class="ft-16">당도</span>
+                            <div id='' class='filter-grade'>
+                                <a href="#" Seq='type_sweet|당도|1' id='asd-ch05-01-01'>당도1</a>
+                                <a href="#" Seq='type_sweet|당도|2' id='asd-ch05-01-02'>당도2</a>
+                                <a href="#" Seq='type_sweet|당도|3' id='asd-ch05-01-03'>당도3</a>
+                                <a href="#" Seq='type_sweet|당도|4' id='asd-ch05-01-04'>당도4</a>
+                                <a href="#" Seq='type_sweet|당도|5' id='asd-ch05-01-05'>당도5</a>
+                            </div>
+                        </li>
+                        <li><span class="ft-16">산도</span>
+                            <div id='' class='filter-grade'>
+                                <a href="#" Seq="type_acidity|산도|1" id='asd-ch05-02-01'>산도1</a>
+                                <a href="#" Seq="type_acidity|산도|2" id='asd-ch05-02-02'>산도2</a>
+                                <a href="#" Seq="type_acidity|산도|3" id='asd-ch05-02-03'>산도3</a>
+                                <a href="#" Seq="type_acidity|산도|4" id='asd-ch05-02-04'>산도4</a>
+                                <a href="#" Seq="type_acidity|산도|5" id='asd-ch05-02-05'>산도5</a>
+                            </div>
+                        </li>
+                        <li><span class="ft-16">바디</span>
+                            <div id='' class='filter-grade'>
+                                <a href="#" Seq="type_body|바디|1" id='asd-ch05-03-01'>바디1</a>
+                                <a href="#" Seq="type_body|바디|2" id='asd-ch05-03-02'>바디2</a>
+                                <a href="#" Seq="type_body|바디|3" id='asd-ch05-03-03'>바디3</a>
+                                <a href="#" Seq="type_body|바디|4" id='asd-ch05-03-04'>바디4</a>
+                                <a href="#" Seq="type_body|바디|5" id='asd-ch05-03-05'>바디5</a>
+                            </div>
+                        </li>
+                        <li><span class="ft-16">타닌</span>
+                            <div id='' class='filter-grade'>
+                                <a href="#" Seq="type_tannin|타닌|1" id='asd-ch05-04-01'>타닌1</a>
+                                <a href="#" Seq="type_tannin|타닌|2" id='asd-ch05-04-02'>타닌2</a>
+                                <a href="#" Seq="type_tannin|타닌|3" id='asd-ch05-04-03'>타닌3</a>
+                                <a href="#" Seq="type_tannin|타닌|4" id='asd-ch05-04-04'>타닌4</a>
+                                <a href="#" Seq="type_tannin|타닌|5" id='asd-ch05-04-05'>타닌5</a>
+                            </div>
+                        </li>
+                    </ul>
+				</div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

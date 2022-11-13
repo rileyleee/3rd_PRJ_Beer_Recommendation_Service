@@ -2,8 +2,10 @@ from django.urls import path
 from search import views
 
 urlpatterns = [
-  #  path('searchlist/', views.search_result),
-  #  path('beerprofile/<int:pk>/', views.search_detail),
+     path('', views.search),
+     path('recommend/', views.recommend),
+     path('list/', views.search_list),
+     path('beerprofile/<int:pk>/', views.search_detail),
     ]
 
     
