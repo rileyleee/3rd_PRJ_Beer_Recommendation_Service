@@ -1,8 +1,11 @@
 {% extends "community/base.html" %}
 {% load django_bootstrap5 %}
 {% block content %}
+    {% bootstrap_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
 
-<!--
+    <!--
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,11 +15,18 @@
 </head>
 <body> -->
 
-<h1>{{ events.title }}</h1>
-<h4>{{ events.created_at }}</h4>
-<p>{{ events.content }}</p>
 
-</hr>
+    <h2>{{ events.title }}</h2>
+    <div style="padding:10px;">
+    </div>
+    <p>{{ events.content }}</p>
+    <small style="float: right;">{{ events.created_at }}</small>
 
-<a href="/community/event/">Event 목록</a>
+    </hr>
+    <div style="padding:15px;">
+    </div>
+
+    <a href="/community/event/" style="float: right;">Event 목록</a>
+    <div style="padding:15px;">
+    </div>
 {% endblock %}

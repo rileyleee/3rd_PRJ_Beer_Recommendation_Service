@@ -1,9 +1,12 @@
 {% extends "account/base.html" %}
 {% load django_bootstrap5 %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+
 {% block content %}
 
     <h2>{{ user }}'s Page</h2>
-    <form action=" " method="GET">
+    <form action=" " method="POST">
         {% csrf_token %}
         {{ form.as_table }}
         <input type="submit">

@@ -1,23 +1,42 @@
 {% extends "community/base.html" %}
 {% load django_bootstrap5 %}
 {% block content %}
+    {% bootstrap_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
 
     <h1>Event</h1>
+    <div style="padding:15px;"></div>
 
     {% for events in event_list %}
-        <h2>
-            <a href="{{ events.pk }}/">
-                {{ events.title }}
-            </a>
-        </h2>
-        <h6>{{ events.created_at }}</h6>
-        <p>{{ events.content }}</p>
+        <div class="card" >
+            <div class="card-header" >
+                <h2>
+                    <a href="{{ events.pk }}/" style="text-decoration-line: none; color: black; font-family: 'Noto Serif KR', serif;">
+                        {{ events.title }}
+                    </a>
+                </h2>
+            </div>
+            <div class="card-body" style="padding: 15px">
+                <h4>{{ events.content }}</h4>
+                <small style="float: right;">{{ events.created_at }}</small>
+            </div>
+        </div>
+        <div style="padding:10px;">
+        </div>
     {% endfor %}
 
-    <a href="new/">관리자만 작성</a>
+    <div style="padding:20px;">
+    </div>
 
-    <footer class="blog-footer">
-        <a href="/community/event">Back to top</a>
+    <button type="button" class="btn btn-outline-secondary" style="float: right">
+        <a href="new/">관리자만 작성</a>
+    </button>
+    <div style="padding:30px;">
+    </div>
+
+    <footer class="blog-footer" style="text-align: center">
+        <a href="/community/event" style="text-decoration-line: none;">Back to top</a>
     </footer>
 
 {% endblock %}

@@ -1,23 +1,43 @@
 {% extends "community/base.html" %}
 {% load django_bootstrap5 %}
 {% block content %}
+    {% bootstrap_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
 
-    <h1>Columns</h1>
+
+    <h1>Column</h1>
+    <div style="padding:15px;"></div>
 
     {% for columns in column_list %}
-        <h2>
-            <a href="{{ columns.pk }}/">
-                {{ columns.title }}
-            </a>
-        </h2>
-        <h6>{{ columns.created_at }}</h6>
-        <p>{{ columns.content }}</p>
+        <div class="card" >
+            <div class="card-header" >
+                <h2>
+                    <a href="{{ columns.pk }}/" style="text-decoration-line: none; color: black">
+                        {{ columns.title }}
+                    </a>
+                </h2>
+            </div>
+            <div class="card-body" style="padding: 15px">
+                <h4>{{ columns.content }}</h4>
+                <small style="float: right;">{{ columns.created_at }}</small>
+            </div>
+        </div>
+        <div style="padding:10px;">
+        </div>
     {% endfor %}
 
-    <a href="new/">새 포스팅 쓰기</a>
+    <div style="padding:20px;">
+    </div>
 
-    <footer class="blog-footer">
-        <a href="/community/column">Back to top</a>
+    <button type="button" class="btn btn-outline-secondary" style="float: right">
+        <a href="new/" style="text-decoration-line: none; color: black">새 포스팅 쓰기</a>
+    </button>
+    <div style="padding:30px;">
+    </div>
+
+    <footer class="blog-footer" style="text-align: center" >
+        <a href="/community/column" style="text-decoration-line: none;">Back to top</a>
     </footer>
 
 {% endblock %}
