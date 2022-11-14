@@ -1,5 +1,12 @@
 {% extends "account/base.html" %}
 {% load django_bootstrap5 %}
 {% block content %}
+
     <h2>{{ user }}'s Page</h2>
+    <form action=" " method="GET">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit">
+    </form>
+
 {% endblock %}

@@ -134,3 +134,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # django--debug-toolbar
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#configure-internal-ips
 INTERNAL_IPS = ['127.0.0.1']
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
