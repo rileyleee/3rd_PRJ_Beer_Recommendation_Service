@@ -1,6 +1,15 @@
 from django.db import models
 
-class Search(models.Model):
-    title = models.CharField(max_length=30)
-    content = models.TextField()
-    created_ad = models.DateTimeField()
+class Beer(models.Model):
+    id = models.AutoField(primary_key=True)
+    big_kind = models.CharField(max_length=100)
+    kind = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    brewery = models.CharField(max_length=200)
+    country = models.CharField(max_length=100)
+    abv = models.CharField(max_length=100)
+    average = models.CharField(max_length=100)
+    ratings = models.CharField(max_length=100)
+    reviews = models.CharField(max_length=100)
+    status = models.CharField(max_length=100)
+

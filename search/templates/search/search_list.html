@@ -1,27 +1,33 @@
-{% extends "base.html" %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
-
-{% block title %}post_search.html{% endblock %}
+{% extends 'search/base.html' %}
 
 {% block content %}
-<h1>Blog Search</h1>
-<br>
+<div class='row'>
+  <div class='col-sm-9'>
+    <form action="" method="post" class="form-search d-flex align-items-stretch mb-3 aos-init aos-animate">
+        <input type="text" class="form-control" name="search" placeholder={{search}}>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    {% if not search_list %}
 
-<form action="." method="post"> {% csrf_token %}
-    {{ form.as_table }} <!-- form을 테이블 형식으로 표시, 여기서 form은 views에서 넘겨준 PostSearchForm 객체임-->
-    <input type="submit" value="Submit" class="btn btn-primary btn-sm">
-</form>
+        <h3>검색 결과가 없습니다! 다른 키워드를 검색해 보는 건 어떠세요? </h3>
 
-<br/><br/>
+    {% else %}
+        <h3>{{search}}에 대한 검색 결과</h3>
+        <hr style="line: solid 10px black;">
+        {% for search_list in search_list.all %}
+                    <h4><a href = "/search/beerprofile/{{ search_list.id }}/">{{search_list.name}}</a></h4>
+                    <h6>맥주 종류: {{search_list.kind}}</h6>
+                    <h6>양조장명: {{search_list.brewery}}</h6>
+                    <h6>제조 국가: {{search_list.country}}</h6>
+        <hr style="line: solid 10px black;">
+        {% endfor %}
 
-{% if object_list %}
-    {% for post in object_list %}
-        <h2><a href='{{ post.get_absolute_url }}'>{{ post.title }}</a></h2>
-        {{ post.modify_date|date:"N d, Y" }}
-        <p>{{ post.description }}</p>
-    {% endfor %}
-{% elif search_term %}<!-- 검색란이 공란인지 확인-->
-    <b><i>Search Word({{ search_term }}) Not Found</i></b>
-{% endif %}
+    {% endif %}
+  </div>
+  <div class='col-sm-3'>
+      <h1>
+          이런 맥주는 어떠신가요?
+      <h1>
+  </div>
+</div>
 {% endblock %}
