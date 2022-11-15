@@ -1,8 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Hahmlet:wght@100;200;300;400;500;600;700;800;900&family=Jua&family=Stylish&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Gugi&family=Hahmlet:wght@100;200;300;400;500;600;700;800;900&family=Jua&family=Stylish&display=swap');
 
-body {
+body, h1, h2, h3, h4, h5, h6{
   font-family: 'Gowun Dodum', sans-serif;
 }
-p {
+
+span{
+  font-family: 'Gugi', cursive;
+}
+
+p{
   font-family: 'Hahmlet', serif;
 }

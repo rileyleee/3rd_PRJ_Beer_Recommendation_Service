@@ -5,11 +5,27 @@
 
 {% block content %}
 
-    <h2>{{ user }}'s Page</h2>
-    <form action=" " method="POST">
-        {% csrf_token %}
-        {{ form.as_table }}
-        <input type="submit">
-    </form>
+<div class="row">
+    <div class="col-4">
+    {{ person }}
+
+        {% if person.profile.image %}
+        <img src="{{ person.profile.image.url }}" width="150rem" style="border-radius: 50%;" alt="user 이미지를 등록해주세요">
+        {% else %}
+        <img src="https://i.stack.imgur.com/34AD2.jpg" width="150rem" style="border-radius: 50%;" alt="user 이미지를 등록해주세요">
+        {% endif %}
+
+    </div>
+    <div class="col-8">
+        <h2>{{ person.username }}
+            {% if person.username == user.username %}
+            <a href="{% url 'account:mypage' %}"><button class="btn btn-success">프로필 편집</button></a>
+            {% endif %}
+            <!-- 다음 포스트에 프로필 편집 페이지를 구성할 것이다. -->
+        </h2>
+        <p>{{ person.profile.nickname }}</p>
+        <p>{{ person.profile.description }}</p>
+    </div>
+</div>
 
 {% endblock %}
