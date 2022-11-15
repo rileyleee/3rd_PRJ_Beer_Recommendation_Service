@@ -4,4 +4,4 @@ wheel==0.38.4
 django-bootstrap5==22.1
 django-debug-toolbar==3.7.0
 accounts~=0.2.4
-Pillow==9.4.0
+Pillow==9.3.0

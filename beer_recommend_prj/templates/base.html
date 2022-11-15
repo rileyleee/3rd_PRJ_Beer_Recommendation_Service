@@ -6,6 +6,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <style type="text/css">
+        /* link - 아직 클릭하지 않은 경우 설정 */
+        a:link { color: #FF8C00; text-decoration: none;}
+        /* visited - 한번 클릭하거나 전에 클릭한 적 있을 경우 설정 */
+        a:visited { color: olive; text-decoration: none;}
+        /* hover - 마우스를 해당 링크에 위치했을 경우 설정 */
+        a:hover { color: #8B4513; text-decoration: none;}
+    </style>
     <meta charset="UTF-8">
     <title>Two_trillionaires' Beer</title>
 </head>
@@ -17,16 +25,16 @@
         </a>
 
         <ul class="nav nav-pills">
-            <li class="nav-item"><a href="/search/recommend/" class="nav-link">Recommendation</a></li>
-            <li class="nav-item"><a href="/community/column/" class="nav-link">Column</a></li>
-            <li class="nav-item"><a href="/community/event/" class="nav-link">Event</a></li>
+            <li class="nav-item"><a href="/search/recommend/" class="nav-link">RECOMMENDATION</a></li>
+            <li class="nav-item"><a href="/community/column/" class="nav-link">COLUMN</a></li>
+            <li class="nav-item"><a href="/community/event/" class="nav-link">EVENT</a></li>
 
             {% if  user.is_authenticated %}
-                <li class="nav-item"><a href="/account/logout/" class="nav-link">{{ user.username }} Logout</a></li>
-                <li class="nav-item"><a href="/account/mypage/" class="nav-link">My Page</a></li>
+                <li class="nav-item"><a href="/account/logout/" class="nav-link">{{ user.username }}&nbsp&nbspLOGOUT</a></li>
+                <li class="nav-item"><a href="/account/mypage/" class="nav-link">MY PAGE</a></li>
             {% else %}
-                <li class="nav-item"><a href="/account/signup/" class="nav-link">Signup</a></li>
-                <li class="nav-item"><a href="/account/login/" class="nav-link">Login</a></li>
+                <li class="nav-item"><a href="/account/signup/" class="nav-link">SIGN UP</a></li>
+                <li class="nav-item"><a href="/account/login/" class="nav-link">LOGIN</a></li>
             {% endif %}
         </ul>
     </header>

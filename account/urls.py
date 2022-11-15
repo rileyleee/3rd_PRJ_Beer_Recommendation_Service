@@ -9,8 +9,9 @@ urlpatterns = [
     path("login/",  auth_views.LoginView.as_view(template_name='account/login.html'), name='login'),
     path("logout/", auth_views.LogoutView.as_view(), name='logout'),
     path("signup/", views.signup, name='signup'),
-    path("<str:username>/", views.mypage, name='mypage'),
+    path("mypage/", views.mypage, name='mypage'),
     path("mybeer/", views.mybeer, name='mybeer'),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += \
+    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
