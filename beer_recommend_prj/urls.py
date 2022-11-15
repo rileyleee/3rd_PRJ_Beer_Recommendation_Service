@@ -18,11 +18,13 @@ Including another URLconf
 
 from django.http import HttpResponse
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import path, include
 
 
 def root(request):
-    return HttpResponse("/search를 추가해 '오늘 시간 비어: 맥주 추천 페이지'로 이동해주세요")
+    return redirect("/search/")
+    # HttpResponse("/search를 추가해 '오늘 시간 비어: 맥주 추천 페이지'로 이동해주세요")
 
 
 urlpatterns = [

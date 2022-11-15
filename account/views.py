@@ -30,8 +30,6 @@ def signup(request):
         form = SignupForm()
     return render(request, 'account/signup.html', {'form': form})
 
-
-@login_required
 @require_http_methods(['GET', 'POST'])
 def mypage(request):
     user = request.user

@@ -6,28 +6,39 @@
 
 {% block content %}
     <h3 class="wrap-tit" >MY PAGE</h3>
-    <table>
-        <thead>
-        <tr>
-            <th>사용자 ID</th>
-            <th>닉네임</th>
-            <th>이메일 주소</th>
-            <th>성별</th>
-            <th>나이</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><h4>{{ person.username }}</h4></td>
-            <td><h4>{{ person.nickname }}</h4></td>
-            <td><h4>{{ person.email }}</h4></td>
-            <td><h4>{{ person.gender }}</h4></td>
-            <td><h4>{{ person.age }}</h4></td>
-        </tr>
-        </tbody>
-    </table>
-
+    <div class='col-sm-9'>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>사용자 ID</th>
+                <th>              </th>
+                <th>{{ person.username }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>닉네임</td>
+                <td>           </td>
+                <td>{{ person.nickname }}</td>
+            </tr>
+            <tr>
+                <td>이메일 주소</td>
+                <td>        </td>
+                <td>{{ person.email }}</td>
+            </tr>
+            <tr>
+                <td>성별</td>
+                <td>               </td>
+                <td>{{ person.gender }}</td>
+            </tr>
+            <tr>
+                <td>나이</td>
+                <td>               </td>
+                <td>{{ person.age }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <div class="container-sm" style = "padding: 10px;" >
         <h2>
             <a href="/search/"><button class="btn btn-success" style="float: right" >홈화면으로 이동</button></a>

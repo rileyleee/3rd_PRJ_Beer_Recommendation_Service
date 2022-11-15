@@ -49,7 +49,7 @@ div.table-title {
   border-collapse: collapse;
   height: 200px;
   margin: auto;
-  max-width: 600px;
+  max-width: 400px;
   padding:5px;
   width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -59,8 +59,8 @@ div.table-title {
 th {
   color: #8B4513;
   background: #F0E68C;
-  border-bottom:4px solid #F0E68C;
-  border-right: 1px solid #F0E68C;
+  border-bottom:4px solid #8B5927;
+  border-right: 1px solid #FFFACD;
   font-size:20px;
   font-weight: 300;
   padding:15px;
@@ -79,7 +79,7 @@ th:last-child {
 }
 
 tr {
-  border-top: 1px solid #fafafa;
+  border-top: 1px solid #8B5927;
   border-bottom: 1px solid #fafafa;
   color: #8B4513;
   font-size:20px;
@@ -88,7 +88,7 @@ tr {
 }
 
 tr:hover td {
-  background:#fafafa;
+  background:#FFF978;
   color:#8B4513;
   border-top: 1px solid #fafafa;
 }

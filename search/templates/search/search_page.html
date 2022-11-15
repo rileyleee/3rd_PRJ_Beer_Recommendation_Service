@@ -1,4 +1,9 @@
 {% extends "search/base.html" %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+
 {% block title %}Home{% endblock %}
 {% block content %}
 
