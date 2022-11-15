@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Gugi&family=Hahmlet:wght@100;200;300;400;500;600;700;800;900&family=Jua&family=Stylish&display=swap');
 
-body, h1, h2, h3, h4, h5, h6{
+body, h2, h3, h4, h5, h6{
   font-family: 'Gowun Dodum', sans-serif;
 }
 
-span{
+h1{
+  font-weight: 200;
   font-family: 'Gugi', cursive;
 }
 
@@ -16,8 +17,8 @@ p{
 body {
   background-color: #FFFACD;
   font-family: 'Gowun Dodum', sans-serif;
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: 500;
   text-rendering: optimizeLegibility;
 }
 
@@ -79,7 +80,7 @@ th:last-child {
 
 tr {
   border-top: 1px solid #fafafa;
-  border-bottom-: 1px solid #fafafa;
+  border-bottom: 1px solid #fafafa;
   color: #8B4513;
   font-size:20px;
   font-weight:normal;
@@ -105,7 +106,7 @@ tr:nth-child(odd) td {
 }
 
 tr:nth-child(odd):hover td {
-  background: ;
+  background: #fafafa;
 }
 
 tr:last-child td:first-child {
