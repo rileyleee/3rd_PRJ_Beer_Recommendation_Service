@@ -2,17 +2,12 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.db.models import Q
 from search.models import Beer
-from sklearn import preprocessing
 from math import pi
-from matplotlib.path import Path
-from matplotlib.spines import Spine
-from matplotlib.transforms import Affine2D
 import matplotlib.pyplot as plt
 import random
-import re
 import logging
 import pandas as pd
-import numpy as np
+from search.ml import beer_model
 
 logger = logging.getLogger('tipper')
 logger.setLevel(logging.DEBUG)
@@ -21,7 +16,6 @@ logger.addHandler(logging.StreamHandler())
 
 # @csrf_exempt  # CSRF Token 체크를 하지 않겠습니다.
 def search(request):
-
     # TODO: 2개의 뷰로 분리하는 것이 낫습니다. => 그럼 아래의 조건문이 필요가 없고, 보다 뷰가 간결해집니다.
 
     beer_list = Beer.objects.all()
@@ -48,23 +42,33 @@ def search(request):
     else:
         template_name = "search/search_page.html"
 
-    preference = []
-    if request.method == "GET":
-        preference.append(request.GET.get('sweet'))
-        preference.append(request.GET.get('body'))
-        preference.append(request.GET.get('fruit'))
-        preference.append(request.GET.get('hoppy'))
-        preference.append(request.GET.get('malty'))
+    user_feature = [
+        request.GET.get('sweet'),
+        request.GET.get('body'),
+        request.GET.get('fruit'),
+        request.GET.get('hoppy'),
+        request.GET.get('malty'),
+    ]
+    if all(user_feature) is False:
+        predict_beer = None
+    else:
+        user_feature = list(map(float, user_feature))
+        predict_beer = beer_model.predict(user_feature)
 
-    return render(request, template_name, {'beer_list': beer_list, 'search': query, 'preference': preference})
+    return render(request, template_name, {'beer_list': beer_list, 'search': query, 'predict_beer': predict_beer})
+
+# def userpredict(request):
+#     user_feature = [0.2, 0.4, 0.6, 0.8, 1] # 여기에 preference가 들어가야 함
+#     predictresult = beer_model.predict(user_feature)
+
 
 @login_required
 def search_detail(request, pk):
     search_detail = Beer.objects.get(id=pk)
 
-    df = pd.read_csv('final_train_beer_ratings_Ver_rader model.csv',encoding='utf-8',index_col=0)
+    df = pd.read_csv('final_train_beer_ratings_Ver_rader model.csv', encoding='utf-8', index_col=0)
     aaa = df['Full Name'].iloc[pk]
-    cc = df[df['Full Name'] == '%s' %aaa]
+    cc = df[df['Full Name'] == '%s' % aaa]
 
     cc = cc[
         ['Astringent', 'Body', 'Alcoholic', 'Bitter', 'Sweet', 'Sour', 'Salty', 'Fruity', 'Hoppy', 'Spices', 'Malty']]
@@ -101,7 +105,6 @@ def search_detail(request, pk):
 
     plt.savefig('static/beerimg.png')
 
-
     return render(request, "search/search_detail.html", {
         "search_details": search_detail,
     })
@@ -117,23 +120,13 @@ def recommend(request):
     )
 
 
-from keras.models import load_model
+# def userpredict(request):
+#     user_feature = [0.2, 0.4, 0.6, 0.8, 1] # 여기에 preference가 들어가야 함
+#     predictresult = beer_model.predict(user_feature)
+#
+#     return render(
+#              request,
+#              'search/test.html',
+#              {'predictresult': predictresult}
+   #      )
 
-
-def hfivemodel(request):
-    ans_list = [0.1, 0.1, 0.1, 0.1, 1.0]
-    model = load_model('static/feature_5_.h5')
-
-    npmean_ans = np.array(ans_list).reshape(1, 5)
-    ans_predict = model.predict(npmean_ans)  # 범주형 결과
-    final_ans_predict = np.argmax(ans_predict, axis=-1)  # 수치형 결과
-    # 응답 평균치에게 추천하는 맥주의 이름 가져오기
-    num = final_ans_predict[0]
-
-    wt_beer = Beer.objects.get(id=num)
-
-    return render(
-        request,
-        'search/test.html',
-        {'wt_beer': wt_beer, 'num': num}
-    )

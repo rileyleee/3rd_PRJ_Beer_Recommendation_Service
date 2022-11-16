@@ -29,10 +29,12 @@
             {% endif %}
         </div>
         <div class='col-sm-3'>
-            <h1>
-                이런 맥주는 어떠신가요?
-                {{ preference }}
-                <h1>
+            {% if predict_beer %}
+                <h3>
+                    이런 맥주는 어떠신가요?
+                    {{ predict_beer }}
+                </h3>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

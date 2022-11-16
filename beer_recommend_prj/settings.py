@@ -153,3 +153,8 @@ LOGOUT_REDIRECT_URL = '/search'
 AUTH_USER_MODEL = 'account.User'
 
 LOGIN_URL = "/account/login/"
+
+# ML Model
+
+BEER_MODEL_PATH = "search/feature_5_.h5"
+BEER_STYLE_NAMES_PATH = "search/feature_style_names.txt"
