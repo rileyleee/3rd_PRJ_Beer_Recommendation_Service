@@ -1,6 +1,5 @@
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from community.models import Column, Event
 from community.forms import ColumnForm, EventForm
 
@@ -18,7 +17,7 @@ def columns(request):
 
 @login_required
 def column_detail(request, pk):
-    column = Column.objects.get(pk=pk)
+    column = get_object_or_404(Column, pk=pk)
     return render(request, "community/column_detail.html", {
         "columns": column,
     })
@@ -29,14 +28,29 @@ def column_new(request):
     if request.method == "GET":
         form = ColumnForm()
     else:
-        form = ColumnForm(request.POST)
-        if form.is_valid():
+        form = ColumnForm(request.POST, request.FILES)
+        if form.is_valid():  # 폼이 유효하다면
             column = form.save()
             return redirect(f"/community/column/{column.pk}/")
 
     return render(request, "community/column_new.html", {
         "form": form,
     })
+
+
+# def c_comment_new(request, column_pk):
+#     if request.method == "POST":
+#         form = C_CommentForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             c_comment = form.save()
+#             redirect_url =f"/{c_comment.column.pk}"
+#             return redirect(redirect_url)
+#     else:
+#         form = C_CommentForm()
+#     return render(request, "community/c_comment_form.html", {
+#         "form":form,
+#     })
+#     pass
 
 
 @login_required
@@ -62,7 +76,7 @@ def event_new(request):
     if request.method == 'GET':
         form = EventForm()
     else:
-        form = EventForm(request.POST)
+        form = EventForm(request.POST, request.FILES)
         if form.is_valid():
             event = form.save()  # ModelForm에서 지원
             return redirect(f"/community/event/{event.pk}/")

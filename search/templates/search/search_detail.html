@@ -59,47 +59,47 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>맥주명</th>
-                                <th>              </th>
-                                <th>{{ search_details.name }}</th>
+                                <th>맥주이름</th>
+                                <td>              </td>
+                                <td>{{ search_details.name }}</td>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>대분류</td>
+                                <th>대분류 스타일</th>
                                 <td>           </td>
                                 <td>{{ search_details.big_kind }}</td>
                             </tr>
                             <tr>
-                                <td>소분류</td>
-                                <td>        </td>
+                                <th>소분류 스타일</th>
+                                <td>            </td>
                                 <td>{{ search_details.kind }}</td>
                             </tr>
                             <tr>
-                                <td>양조장명</td>
-                                <td>               </td>
+                                <th>양조장 이름</th>
+                                <td>            </td>
                                 <td>{{ search_details.brewery }}</td>
                             </tr>
                             <tr>
-                                <td>ABV</td>
-                                <td>               </td>
-                                <td>{{ search_details.abv }}</td>
+                                <th>알코올 도수</th>
+                                <td>            </td>
+                                <td>{{ search_details.abv }}%</td>
                             </tr>
                             <tr>
-                                <td>Status</td>
-                                <td>               </td>
+                                <th>판매 상태</th>
+                                <td>            </td>
                                 <td>{{ search_details.status }}</td>
                             </tr>
                             <tr>
-                                <td>average</td>
-                                <td>               </td>
-                                <td> <span style="color:black; font-size:1.00em; font-weight:bold;">{{ search_details.average }}</span></td>
+                                <th>평 점</th>
+                                <td>            </td>
+                                <td> {{ search_details.average }}</td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                레이더 차트 자리
+                <img src='/static/beerimg.png' alt="My Image" style="float: right; width:330px; height:330px; position: absolute; left: 48%; top:31%;">
             </div>
 
             <hr style="line: solid 10px black;">

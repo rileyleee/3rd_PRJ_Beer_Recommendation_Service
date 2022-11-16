@@ -1,10 +1,8 @@
-from django.contrib.auth.forms import *
 from account.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 
 class UserForm(UserCreationForm):
-    # email = forms.EmailField(label="이메일")
 
     class Meta:
         model = User
@@ -14,7 +12,8 @@ class UserForm(UserCreationForm):
                   "password2",
                   "email",
                   "gender",
-                  "age",)
+                  "age",
+                  )
 
 
 class SignupForm(UserCreationForm):
@@ -24,6 +23,7 @@ class SignupForm(UserCreationForm):
             "nickname",
             "gender",
             "age",
+            "image",
         )
         pass
 
@@ -33,5 +33,6 @@ class SignupForm(UserCreationForm):
                    "password2",
                    "email",
                    "gender",
-                   "age", ]
+                   "age",
+                   "image"]
     pass

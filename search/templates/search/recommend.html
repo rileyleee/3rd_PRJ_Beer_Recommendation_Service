@@ -1,10 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'search/base.html' %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
 
-</body>
-</html>
+{% block content %}
+    <div class='row'>
+        <div class='col-sm-4'>
+            <h3>월별 인기 맥주 순</h3>
+            {% for rev in review_ranking %}
+                <h6><a href = "/search/beerprofile/{{ rev.id }}">{{ rev.name }}</a></h6>
+            {% endfor %}
+        </div>
+        <div class='col-sm-1'>
+        </div>
+        <div class='col-sm-4'>
+            <h3>월별 평점 맥주 순</h3>
+            {% for aver in average_ranking %}
+                <h6><a href = "/search/beerprofile/{{ aver.id }}">{{ aver.name }}</a></h6>
+            {% endfor %}
+        </div>
+        <div class='col-sm-3'>
+            <h1>
+                이런 맥주는 어떠신가요?
+                </h1>
+        </div>
+    </div>
+{% endblock %}

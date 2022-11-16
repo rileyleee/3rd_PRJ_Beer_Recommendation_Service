@@ -5,19 +5,13 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
 
-    <!--
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ events.title }} - event</title>
-
-</head>
-<body> -->
-
 
     <h2>{{ events.title }}</h2>
     <div style="padding:10px;">
+            {# image 필드에 저장된 파일이 있다면 #}
+        {% if events.image %}
+            <img src="{{ events.image.url }}" />
+        {% endif %}
     </div>
     <p>{{ events.content }}</p>
     <small style="float: right;">{{ events.created_at }}</small>
@@ -26,6 +20,7 @@
     <div style="padding:15px;">
     </div>
 
+    <a href="/community/event/" style="float: right;">댓글 작성</a>
     <a href="/community/event/" style="float: right;">Event 목록</a>
     <div style="padding:15px;">
     </div>

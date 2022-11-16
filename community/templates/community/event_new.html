@@ -2,19 +2,17 @@
 {% load django_bootstrap5 %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
-
 {% block content %}
 
-</hr>
+    </hr>
+    <div class="container">
+        <h2 class="my-3 border-bottom pb-2">새 이벤트 작성</h2>
 
-<h2>이벤트 작성</h2>
+        <form action ="" method="post" novalidate enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
 
-<form action ="" method="post" novalidate>
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit" />
-</form>
-
+            <button type="submit" class="btn btn-success" style="float: right">이벤트 작성</button>
+        </form>
+    </div>
 {% endblock %}

@@ -17,13 +17,13 @@ def user_path(instance, filename):  # 파라미터 instance는 Photo 모델을 �
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     # User모델과 Profile을 1:1로 연결
-    image = models.ImageField(upload_to=user_path)
+
 
 
 class User(AbstractUser):
     class GenderChoices(models.IntegerChoices):
-        MALE = 0, "남자"
-        FEMALE = 1, "여자"
+        MALE = 0, "남성"
+        FEMALE = 1, "여성"
 
     gender = models.PositiveSmallIntegerField(
         validators=[
@@ -43,3 +43,5 @@ class User(AbstractUser):
     nickname = models.CharField(max_length=40, blank=True)
 
     email = models.EmailField(max_length=40, blank=True)
+
+    image = models.ImageField(upload_to="user_path/%Y/%m/%d", blank=True, null=True)

@@ -2,56 +2,115 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.db.models import Q
 from search.models import Beer
-from django.views.decorators.csrf import csrf_exempt
+from sklearn import preprocessing
+from math import pi
+from matplotlib.path import Path
+from matplotlib.spines import Spine
+from matplotlib.transforms import Affine2D
+import matplotlib.pyplot as plt
+import random
+import re
 import logging
+import pandas as pd
 
 logger = logging.getLogger('tipper')
 logger.setLevel(logging.DEBUG)
 logger.addHandler(logging.StreamHandler())
 
 
-
-@csrf_exempt
+# @csrf_exempt  # CSRF Token 체크를 하지 않겠습니다.
 def search(request):
-    if request.method == 'GET':
-        return render(request, "search/search_page.html")
 
+    # TODO: 2개의 뷰로 분리하는 것이 낫습니다. => 그럼 아래의 조건문이 필요가 없고, 보다 뷰가 간결해집니다.
+
+    beer_list = Beer.objects.all()
+    query = request.GET.get('search', '')  # 일반적으로는 q나 query이름을 씁니다.
+    ch_category_list = request.GET.getlist("chCategory")
+    ch_country_list = request.GET.getlist("chCountry")
+
+    if query or ch_category_list or ch_country_list:
+        if query:
+            beer_list = beer_list.filter(
+                Q(name__icontains=query) |
+                Q(brewery__icontains=query) |
+                Q(country__icontains=query)
+            )
+        if ch_category_list:
+            beer_list = beer_list.filter(
+                Q(big_kind__in=ch_category_list)
+            )
+        if ch_country_list:
+            beer_list = beer_list.filter(
+                Q(country__in=ch_country_list)
+            )
+        template_name = "search/search_list.html"
     else:
-        logger.info("=================search")
-        logger.info(request.POST)
-        beer_list = Beer.objects.all()  ###
-        search = request.POST.get('search', '')
-        search_list = []
-        search_list = beer_list.filter(
-            Q(name__icontains=search) |
-            Q(brewery__icontains=search) |
-            Q(country__icontains=search)
-        )
-        return render(request, "search/search_list.html", {'search_list': search_list, 'search': search})
+        template_name = "search/search_page.html"
 
+    preference = []
+    if request.method == "GET":
+        preference.append(request.GET.get('sweet'))
+        preference.append(request.GET.get('body'))
+        preference.append(request.GET.get('fruit'))
+        preference.append(request.GET.get('hoppy'))
+        preference.append(request.GET.get('malty'))
+
+    return render(request, template_name, {'beer_list': beer_list, 'search': query, 'preference': preference})
 
 @login_required
 def search_detail(request, pk):
     search_detail = Beer.objects.get(id=pk)
+
+    df = pd.read_csv('final_train_beer_ratings_Ver_rader model.csv',encoding='utf-8',index_col=0)
+    aaa = df['Full Name'].iloc[pk]
+    cc = df[df['Full Name'] == '%s' %aaa]
+
+    cc = cc[
+        ['Astringent', 'Body', 'Alcoholic', 'Bitter', 'Sweet', 'Sour', 'Salty', 'Fruity', 'Hoppy', 'Spices', 'Malty']]
+    dfR = cc
+    n = 0
+    angles = [x / 11 * (2 * pi) for x in range(11)]  # 각 등분점
+    angles += angles[:1]  # 시작점으로 다시 돌아와야하므로 시작점 추가
+    my_palette = plt.cm.get_cmap("Set2", 11)
+    fig = plt.figure(figsize=(8, 8), dpi=100)
+    fig.set_facecolor('white')
+    color = ["#" + ''.join([random.choice('0123456789ABCDEF') for j in range(6)])][0]
+    labels = dfR.columns[:]
+
+    data = dfR.iloc[0].tolist()
+    data += data[:1]
+
+    ax = plt.subplot(1, 1, 1, polar=True)
+    ax.set_theta_offset(pi / 2)  # 시작점
+    ax.set_theta_direction(-1)  # 그려지는 방향 시계방향
+
+    plt.xticks(angles[:-1], labels, fontsize=13)  # x축 눈금 라벨
+    ax.tick_params(axis='x', which='major', pad=15)  # x축과 눈금 사이에 여백을 준다.
+
+    ax.set_rlabel_position(0)  # y축 각도 설정(degree 단위)
+    plt.yticks([-4, 0, 4, 7], ['', '', '', ''], fontsize=10)  # y축 눈금 설정
+    plt.ylim(-4, 7)
+
+    ax.plot(angles, data, color=color, linewidth=2, linestyle='solid')  # 레이더 차트 출력
+    ax.fill(angles, data, color=color, alpha=0.4)  # 도형 안쪽에 색을 채워준다.
+
+    plt.title('', size=13, color=color, x=0.5, y=1, ha='center')  # 타이틀은 캐릭터 클래스로 한다.
+
+    plt.tight_layout(pad=5)  # subplot간 패딩 조절
+
+    plt.savefig('static/beerimg.png')
+
+
     return render(request, "search/search_detail.html", {
         "search_details": search_detail,
     })
 
 
-# 실행 불가. ###의 beer_list를 print 해 보았으나 beer(1), beer(2) 등의 object 형태로 구현
-# 그래서 접근이 불가한 걸까?
-## print(search) X, html에서 search와 search_list가 없다는 걸 보면... 담기지 않은 게 아닐까?
-###로그에서 나타낸 검색 값은 무엇을 의미하는 건지?
 def recommend(request):
+    review_ranking = Beer.objects.all().order_by('-reviews')[:10]
+    average_ranking = Beer.objects.all().order_by('-average')[:10]
     return render(
         request,
-        'search/recommend.html'
-    )
-
-
-@login_required
-def search_list(request):
-    return render(
-        request,
-        'search/search_list.html'
+        'search/recommend.html',
+        {'review_ranking': review_ranking, 'average_ranking': average_ranking}
     )

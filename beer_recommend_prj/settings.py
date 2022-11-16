@@ -129,13 +129,14 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, STATIC_URL,),
 ]
 
-MEDIA_URL = 'files/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads',)
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR /'mediafiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -150,3 +151,5 @@ LOGIN_REDIRECT_URL = '/search'
 LOGOUT_REDIRECT_URL = '/search'
 
 AUTH_USER_MODEL = 'account.User'
+
+LOGIN_URL = "/account/login/"

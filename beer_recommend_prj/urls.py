@@ -14,12 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-# from django.contrib import admin
+
 
 from django.http import HttpResponse
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path, include
+from django.conf.urls.static import static
+from beer_recommend_prj import settings
 
 
 def root(request):
@@ -35,3 +37,6 @@ urlpatterns = [
     path('community/', include('community.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
 ]
+
+urlpatterns += \
+    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

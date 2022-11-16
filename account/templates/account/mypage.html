@@ -5,41 +5,59 @@
 <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
 
 {% block content %}
-    <h3 class="wrap-tit" >MY PAGE</h3>
-    <div class='col-sm-9'>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>사용자 ID</th>
-                <th>              </th>
-                <th>{{ person.username }}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>닉네임</td>
-                <td>           </td>
-                <td>{{ person.nickname }}</td>
-            </tr>
-            <tr>
-                <td>이메일 주소</td>
-                <td>        </td>
-                <td>{{ person.email }}</td>
-            </tr>
-            <tr>
-                <td>성별</td>
-                <td>               </td>
-                <td>{{ person.gender }}</td>
-            </tr>
-            <tr>
-                <td>나이</td>
-                <td>               </td>
-                <td>{{ person.age }}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
     <div class="container-sm" style = "padding: 10px;" >
+        <h3 class="wrap-tit" >MY PAGE</h3>
+        <div class='col-sm-9'>
+            <div style="padding:10px;">
+                <div class="col-xs-6 col-md-3">
+                    {% if person.image %}
+                        <img class="round" src="{{ person.image.url }}" width="200"> <br>
+                    {% else %}
+                        <img class="round" src="{% static 'static/사용자이미지.jpg' %}" width="200"> <br>
+                    {% endif %}
+                </div>
+                {# image 필드에 저장된 파일이 있다면 #}
+{#                {% if person.image %}#}
+{#                    <img src="{{ person.image.url }}" />#}
+{#                {% endif %}#}
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>사용자 이름</th>
+                    <td>              </td>
+                    <td>{{ person.username }}</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>닉네임</th>
+                    <td>           </td>
+                    <td>{{ person.nickname }}</td>
+                </tr>
+                <tr>
+                    <th>이메일 주소</th>
+                    <td>        </td>
+                    <td>{{ person.email }}</td>
+                </tr>
+                <tr>
+                    <th>성별</th>
+                    <td>               </td>
+                    <td>{% if person.gender == 0 %}
+                        <h5>남성</h5>
+                        {% else %}
+                        <h5>여성</h5>
+                        {% endif %}</td>
+                </tr>
+                <tr>
+                    <th>나이</th>
+                    <td>               </td>
+                    <td>{{ person.age }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
         <h2>
             <a href="/search/"><button class="btn btn-success" style="float: right" >홈화면으로 이동</button></a>
         </h2>
