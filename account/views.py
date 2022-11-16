@@ -1,8 +1,12 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
 from account.forms import SignupForm
 
+login = LoginView.as_view(template_name="search/search_page.html")
+
+logout = LogoutView.as_view(next_page="/account/login/")
 
 def signup(request):
     if request.method == "POST":
