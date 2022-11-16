@@ -7,7 +7,6 @@
 <style>
     th, td {
         text-align: center;
-        bg
     }
 
 
@@ -42,11 +41,16 @@
                     <h2>
                         <b>당신에게 꼭 맞는 맥주 </b>
                     </h2>
+                    </tr>
                     <tr>
-                        <h3>
+                        <h3 style="color: #8B4513">
                             <div style="padding:10px;"></div>
-                            > {{ predict_beer }}
+                            > <b>{{ predict_beer }}</b>
                         </h3>
+                        two_trillionaires의
+                        알고리즘으로 엄선한 <br>
+                        {{ predict_beer }} TOP 10<br>
+                        한 번 둘러 보세요!
                     </tr>
                     <div style="padding:10px;"></div>
                     {% for kl in kind_list %}
@@ -56,12 +60,6 @@
                             <td><h6><a href = "/search/beerprofile/{{ kl.id }}">{{ kl.name }}</a></h6></td>
                         </tr>
                     {% endfor %}
-
-                    <tr>
-                        two_trillionaires가 <br>
-                        회원님의 취향을 분석해<br>
-                        엄선한 맥주 스타일입니다.
-                    </tr>
                 </table>
             {% endif %}
         </div>
