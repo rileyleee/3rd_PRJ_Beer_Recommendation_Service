@@ -12,6 +12,7 @@ import random
 import re
 import logging
 import pandas as pd
+import numpy as np
 
 logger = logging.getLogger('tipper')
 logger.setLevel(logging.DEBUG)
@@ -113,4 +114,26 @@ def recommend(request):
         request,
         'search/recommend.html',
         {'review_ranking': review_ranking, 'average_ranking': average_ranking}
+    )
+
+
+from keras.models import load_model
+
+
+def hfivemodel(request):
+    ans_list = [0.1, 0.1, 0.1, 0.1, 1.0]
+    model = load_model('static/feature_5_.h5')
+
+    npmean_ans = np.array(ans_list).reshape(1, 5)
+    ans_predict = model.predict(npmean_ans)  # 범주형 결과
+    final_ans_predict = np.argmax(ans_predict, axis=-1)  # 수치형 결과
+    # 응답 평균치에게 추천하는 맥주의 이름 가져오기
+    num = final_ans_predict[0]
+
+    wt_beer = Beer.objects.get(id=num)
+
+    return render(
+        request,
+        'search/test.html',
+        {'wt_beer': wt_beer, 'num': num}
     )

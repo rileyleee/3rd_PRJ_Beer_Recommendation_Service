@@ -5,6 +5,8 @@ urlpatterns = [
      path('', views.search),
      path('recommend/', views.recommend),
      path('beerprofile/<int:pk>/', views.search_detail),
-    ]
+     path('test/', views.hfivemodel),
+
+]
 
     

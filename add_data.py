@@ -26,6 +26,11 @@ with open('final_train_beer_rating.csv', encoding='utf8') as csv_file_beer:
         reviews = row[7]
         ratings = row[8]
         status = row[9]
+        body = row[12]
+        sweet = row[15]
+        fruity = row[18]
+        hoppy = row[19]
+        malty = row[21]
 
         beer = Beer(
                     big_kind=big_kind,
@@ -37,7 +42,13 @@ with open('final_train_beer_rating.csv', encoding='utf8') as csv_file_beer:
                     average=average,
                     ratings=ratings,
                     reviews=reviews,
-                    status=status, )
+                    status=status,
+                    body=body,
+                    sweet=sweet,
+                    fruity=fruity,
+                    hoppy=hoppy,
+                    malty=malty,
+        )
         beer_list.append(beer)
 
         print(name)

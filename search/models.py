@@ -12,4 +12,8 @@ class Beer(models.Model):
     ratings = models.CharField(max_length=100)
     reviews = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
-
+    body = models.FloatField()
+    sweet = models.FloatField()
+    fruity = models.FloatField()
+    hoppy = models.FloatField()
+    malty = models.FloatField()
