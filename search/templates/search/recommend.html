@@ -7,18 +7,40 @@
 {% block content %}
     <div class='row'>
         <div class='col-sm-4'>
-            <h3>월별 인기 맥주 순</h3>
+        <table class="table">
+            <thead>
+            <tr><h3>월별 인기 맥주 순</h3></tr>
+            </thead>
+            <tbody>
             {% for rev in review_ranking %}
-                <h6><a href = "/search/beerprofile/{{ rev.id }}">{{ rev.name }}</a></h6>
+                <tr>
+                    <th>{{ forloop.counter }}위</th>
+                    <td>           </td>
+                    <td><h6><a href = "/search/beerprofile/{{ rev.id }}">{{ rev.name }}</a></h6></td>
+                </tr>
             {% endfor %}
+
+            </tbody>
+        </table>
         </div>
         <div class='col-sm-1'>
         </div>
         <div class='col-sm-4'>
-            <h3>월별 평점 맥주 순</h3>
+        <table class="table">
+            <thead>
+            <tr><h3>월별 평점 맥주 순</h3></tr>
+            </thead>
+            <tbody>
             {% for aver in average_ranking %}
-                <h6><a href = "/search/beerprofile/{{ aver.id }}">{{ aver.name }}</a></h6>
+                <tr>
+                    <th>{{ forloop.counter }}위</th>
+                    <td>           </td>
+                    <td><h6><a href = "/search/beerprofile/{{ aver.id }}">{{ aver.name }}</a></h6></td>
+                </tr>
             {% endfor %}
+
+            </tbody>
+        </table>
         </div>
         <div class='col-sm-3'>
             <h1>
