@@ -57,10 +57,6 @@ def search(request):
 
     return render(request, template_name, {'beer_list': beer_list, 'search': query, 'predict_beer': predict_beer})
 
-# def userpredict(request):
-#     user_feature = [0.2, 0.4, 0.6, 0.8, 1] # 여기에 preference가 들어가야 함
-#     predictresult = beer_model.predict(user_feature)
-
 
 @login_required
 def search_detail(request, pk):
@@ -119,14 +115,4 @@ def recommend(request):
         {'review_ranking': review_ranking, 'average_ranking': average_ranking}
     )
 
-
-# def userpredict(request):
-#     user_feature = [0.2, 0.4, 0.6, 0.8, 1] # 여기에 preference가 들어가야 함
-#     predictresult = beer_model.predict(user_feature)
-#
-#     return render(
-#              request,
-#              'search/test.html',
-#              {'predictresult': predictresult}
-   #      )
 

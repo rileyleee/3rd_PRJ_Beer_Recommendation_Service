@@ -4,39 +4,34 @@
     {% bootstrap_css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+    <div class="container-lg">
+        <h1>Column 목록</h1>
+        <div style="padding:15px;"></div>
+        {% for columns in column_list %}
 
-    <h1>Column</h1>
-    <div style="padding:15px;"></div>
-
-    {% for columns in column_list %}
-        <div class="card" >
-            <div class="card-header" >
-                <h2>
-                    <a href="{{ columns.pk }}/" style="text-decoration-line: none; color: black">
-                        {{ columns.title }}
-                    </a>
-                </h2>
+            <div class="card" style="width: 80rem;">
+                <a href ="{{ columns.pk }}/">
+                    <img src="{{ columns.image.url }}" class="card-img-top" alt="등록한 컬럼 이미지입니다" height="400">
+                </a>
+                <div class="card-body">
+                    <h2 class="card-title"> {{ columns.title }}</h2>
+                    <h4 class="card-text">{{ columns.content }}</h4>
+                    <a href="{{ columns.pk }}/"><button class="btn btn-success" style="float: right" >컬럼 읽기</button></a>
+                </div>
             </div>
-            <div class="card-body" style="padding: 15px">
-                <h4>{{ columns.content }}</h4>
-                <small style="float: right;">{{ columns.created_at }}</small>
+            <div style="padding:20px;">
             </div>
+
+        {% endfor %}
+
+        <div style="padding:20px;">
         </div>
-        <div style="padding:10px;">
+        <a href="new/"><button class="btn btn-success" style="float: right" >새 컬럼 작성</button></a>
+        <div style="padding:30px;">
         </div>
-    {% endfor %}
 
-    <div style="padding:20px;">
+        <footer class="blog-footer" style="text-align: center" >
+            <a href="/community/column" style="text-decoration-line: none;">Back to top</a>
+        </footer>
     </div>
-
-    <button type="button" class="btn btn-success" style="float: right">
-        <a href="new/" style="text-decoration-line: none; color: #F0E68C">새 포스팅 쓰기</a>
-    </button>
-    <div style="padding:30px;">
-    </div>
-
-    <footer class="blog-footer" style="text-align: center" >
-        <a href="/community/column" style="text-decoration-line: none;">Back to top</a>
-    </footer>
-
 {% endblock %}

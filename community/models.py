@@ -1,9 +1,9 @@
 from django.db import models
-# from django.forms import ModelForm
-# from beer_recommend_prj import settings
+from beer_recommend_prj import settings
 
 
 class Column(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=50)
     content = models.TextField()
     image = models.ImageField(blank=True)
@@ -16,12 +16,6 @@ class Column(models.Model):
 
     def __str__(self):
         return f"[{self.pk}] {self.title}"
-
-
-# class Column_comment(models.Model):
-#     event = models.ForeignKey(Column, on_delete=models.CASCADE)
-#     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
-#     comment = models.TextField()
 
 
 class Event(models.Model):
@@ -39,7 +33,3 @@ class Event(models.Model):
         return f"[{self.pk}] {self.title}"
 
 
-# class Event_comment(models.Model):
-#     event = models.ForeignKey(Event, on_delete=models.CASCADE)
-#     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
-#     comment = models.TextField()

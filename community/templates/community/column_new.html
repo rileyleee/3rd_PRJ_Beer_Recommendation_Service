@@ -11,8 +11,11 @@
         <form action ="" method="post" novalidate enctype="multipart/form-data">
             {% csrf_token %}
             {% bootstrap_form form %}
-
+            <div style="padding:30px;">
+            </div>
             <button type="submit" class="btn btn-success" style="float: right">컬럼 작성</button>
+            <div style="padding:30px;">
+            </div>
         </form>
     </div>
 {% endblock %}

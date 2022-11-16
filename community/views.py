@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from community.models import Column, Event
@@ -38,19 +39,24 @@ def column_new(request):
     })
 
 
-# def c_comment_new(request, column_pk):
-#     if request.method == "POST":
-#         form = C_CommentForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             c_comment = form.save()
-#             redirect_url =f"/{c_comment.column.pk}"
-#             return redirect(redirect_url)
-#     else:
-#         form = C_CommentForm()
-#     return render(request, "community/c_comment_form.html", {
-#         "form":form,
-#     })
-#     pass
+def column_edit(request, pk):
+    column = Column.objects.get(pk=pk)
+
+    if request.method == "POST":
+        form = ColumnForm(request.POST, instance=column)
+        if form.is_valid():
+            # form.cleaned_data
+            column = form.save()
+            messages.success(request, "successfully modified")
+
+            return redirect(f"/community/column/{column.pk}/")
+    else:
+        form = ColumnForm(instance=column)
+
+    return render(request, "community/column_edit.html", {
+        "form": form,
+    })
+
 
 
 @login_required

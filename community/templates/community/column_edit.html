@@ -6,14 +6,12 @@
 
     </hr>
     <div class="container">
-        <h2 class="my-3 border-bottom pb-2">새 이벤트 작성</h2>
+        <h2 class="my-3 border-bottom pb-2">컬럼 수정하기</h2>
 
         <form action ="" method="post" novalidate enctype="multipart/form-data">
             {% csrf_token %}
             {% bootstrap_form form %}
-            <div style="padding:15px;"></div>
-                <button type="submit" class="btn btn-success" style="float: right">이벤트 작성</button>
-            <div style="padding:15px;"></div>
+            <button type="submit" class="btn btn-success" style="float: right">편집 완료 및 저장</button>
         </form>
     </div>
 {% endblock %}

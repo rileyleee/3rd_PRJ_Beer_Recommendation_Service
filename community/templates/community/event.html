@@ -4,39 +4,31 @@
     {% bootstrap_css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+    <div class="container-lg">
+        <h1>Event 목록</h1>
+        <div style="padding:15px;"></div>
 
-    <h1>Event</h1>
-    <div style="padding:15px;"></div>
+        {% for events in event_list %}
 
-    {% for events in event_list %}
-        <div class="card" >
-            <div class="card-header" >
-                <h2>
-                    <a href="{{ events.pk }}/" style="text-decoration-line: none; color: black; font-family: 'Noto Serif KR', serif;">
-                        {{ events.title }}
-                    </a>
-                </h2>
+            <div class="card" style="width: 80rem;">
+                <a href="{{ events.pk }}/">
+                    <img src="{{ events.image.url }}" class="card-img-top" alt="등록한 이벤트 이미지입니다" height="400">
+                </a>
+                <div class="card-body">
+                    <h2 class="card-title"> {{ events.title }}</h2>
+                    <h4 class="card-text">{{ events.content }}</h4>
+                    <a href="{{ events.pk }}/"><button class="btn btn-success" style="float: right" >게시글 읽기</button></a>
+                </div>
             </div>
-            <div class="card-body" style="padding: 15px">
-                <h4>{{ events.content }}</h4>
-                <small style="float: right;">{{ events.created_at }}</small>
-            </div>
+            <div style="padding:20px;"></div>
+        {% endfor %}
+
+        <div style="padding:20px;">
         </div>
-        <div style="padding:10px;">
-        </div>
-    {% endfor %}
 
-    <div style="padding:20px;">
+        <footer class="blog-footer" style="text-align: center">
+            <a href="/community/event" style="text-decoration-line: none;">Back to top</a>
+        </footer>
     </div>
-
-    <button type="button" class="btn btn-success" style="float: right">
-        <a href="new/"style="text-decoration-line: none; color: #F0E68C">관리자만 작성</a>
-    </button>
-    <div style="padding:30px;">
-    </div>
-
-    <footer class="blog-footer" style="text-align: center">
-        <a href="/community/event" style="text-decoration-line: none;">Back to top</a>
-    </footer>
 
 {% endblock %}
