@@ -99,7 +99,7 @@
                         </table>
                     </div>
                 </div>
-               <img src='/static/beerimg.png' alt="My Image" style="float: right; width:330px; height:330px; position: absolute; left: 48%; top:31%;">
+                <img src='/static/beerimg.png' alt="My Image" style="float: right; width:330px; height:330px; position: absolute; left: 48%; top:23%;">
             </div>
 
             <hr style="line: solid 10px black;">
@@ -133,7 +133,13 @@
 
         </div>
         <div class='col-sm-3'>
-            <h5>여기다 광고 넣을 거지롱</h5>
+            <div style="padding:20px;"></div>
+            <div class="card" style="width: 18rem;">
+                <img class="img-fluid" src="{% static '스텔라 광고.jpg' %}" alt="맥주 광고 이미지" width="300">
+                <div class="card-body">
+                    <p class="card-text">'650년 전통의 스텔라 아르투아' ‘스텔라’는 라틴어로 별을 의미하며, ‘아르투아’는 브루마스터였던 세바스찬 아르투아 (Sebastian Artois)의 이름에서 유래하였습니다. 병마다 새겨진 별은 스텔라 아르투아가 탄생한 크리스마스의 빛나는 순간을 나타냅니다. 스텔라 아르투아와 올 겨울 크리스마스를 함께하세요.</p>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

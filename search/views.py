@@ -22,7 +22,6 @@ def search(request):
     query = request.GET.get('search', '')  # 일반적으로는 q나 query이름을 씁니다.
     ch_category_list = request.GET.getlist("chCategory")
     ch_country_list = request.GET.getlist("chCountry")
-
     if query or ch_category_list or ch_country_list:
         if query:
             beer_list = beer_list.filter(
@@ -54,8 +53,13 @@ def search(request):
     else:
         user_feature = list(map(float, user_feature))
         predict_beer = beer_model.predict(user_feature)
+    kind_list = Beer.objects.all().order_by('-reviews')
+    if predict_beer:
+        kind_list = kind_list.filter(
+            Q(kind__icontains=predict_beer))[:10]
 
-    return render(request, template_name, {'beer_list': beer_list, 'search': query, 'predict_beer': predict_beer})
+    return render(request, template_name, {'beer_list': beer_list, 'search': query, 'predict_beer': predict_beer, 'kind_list':kind_list})
+
 
 
 @login_required

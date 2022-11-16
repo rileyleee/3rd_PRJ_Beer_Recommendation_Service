@@ -5,10 +5,10 @@
 <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
 
 <style>
-th, td {
-    text-align: center;
-    bg
-      }
+    th, td {
+        text-align: center;
+        bg
+    }
 
 
 </style>
@@ -39,22 +39,29 @@ th, td {
         <div class='col-sm-3'>
             {% if predict_beer %}
                 <table>
-                <h2>
-                    당신에게 꼭 맞는 맥주
-                </h2>
-                </tr>
-                <tr>
-                    <h3>
-                        <div style="padding:10px;"></div>
-                    -> {{ predict_beer }}
-                    </h3>
-                </tr>
+                    <h2>
+                        <b>당신에게 꼭 맞는 맥주 </b>
+                    </h2>
+                    <tr>
+                        <h3>
+                            <div style="padding:10px;"></div>
+                            > {{ predict_beer }}
+                        </h3>
+                    </tr>
                     <div style="padding:10px;"></div>
-                <tr>
-                    two_trillionaires가 <br>
-                    회원님의 취향을 분석해<br>
-                    엄선한 맥주 스타일입니다
-                </tr>
+                    {% for kl in kind_list %}
+                        <tr height="70">
+                            <th>{{ forloop.counter }}</th>
+                            <td>           </td>
+                            <td><h6><a href = "/search/beerprofile/{{ kl.id }}">{{ kl.name }}</a></h6></td>
+                        </tr>
+                    {% endfor %}
+
+                    <tr>
+                        two_trillionaires가 <br>
+                        회원님의 취향을 분석해<br>
+                        엄선한 맥주 스타일입니다.
+                    </tr>
                 </table>
             {% endif %}
         </div>
