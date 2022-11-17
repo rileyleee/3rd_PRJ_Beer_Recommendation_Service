@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render, redirect
@@ -19,6 +20,22 @@ def signup(request):
         form = SignupForm()
     return render(request, 'account/signup.html', {'form': form})
 
+def mypage_edit(request):
+    user = request.user
+    if request.method == "POST":
+        form = SignupForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            # form.cleaned_data
+            user = form.save()
+            messages.success(request, "successfully modified")
+
+            return redirect(f"/account/mypage/")
+    else:
+        form = SignupForm(instance=user)
+
+    return render(request, "account/mypage_edit.html", {
+        "form": form,
+    })
 
 @login_required
 @require_http_methods(['GET', 'POST'])

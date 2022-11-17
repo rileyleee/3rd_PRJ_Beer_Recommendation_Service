@@ -6,10 +6,11 @@
 {% block content %}
     <div class="container-lg">
         <div style="padding:20px;"></div>
-        <a href="/community/column/"><button class="btn btn-success" style="float: right" >컬럼 목록</button></a>
+        <div class="container-sm">
+            <a href="/community/column/"><button class="btn btn-success" style="float: right" >컬럼 리스트</button></a></div>
         <div style="padding:15px;"></div>
-
-        <h2>{{ columns.title }}</h2>
+        <div class="container-fluid">
+            <h2>{{ columns.title }}</h2></div>
         <div style="padding:10px;">
             <small style="float: right;">작성일시: {{ columns.created_at }}</small>
 
@@ -17,11 +18,14 @@
                 <img src="{{ columns.image.url }}" class="img-fluid" width="1250">
             {% endif %}
         </div>
-        <p>{{ columns.content }}</p>
+        <div style="padding:15px;"></div>
+        <div class="container-fluid">
+            <p>{{ columns.content }}</p></div>
         </hr>
         <div style="padding:15px;">
         </div>
-        <a href="/community/column/{{ columns.pk }}/edit/"><button class="btn btn-success" style="float: right" >컬럼 수정</button></a>
+        <div class="container-sm">
+            <a href="/community/column/{{ columns.pk }}/edit/"><button class="btn btn-success" style="float: right" >컬럼 수정</button></a></div>
         <div style="padding:20px;"></div>
     </div>
 
